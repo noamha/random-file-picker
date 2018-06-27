@@ -256,8 +256,14 @@ namespace NHP.RandomFilePicker
                         lock (lstMove)
                         {
                             lstMove.RemoveAt(i);
-                            moveTheFile(moveFile);
-
+                            if (moveFile.source != moveFile.destination)
+                            {
+                                moveTheFile(moveFile);
+                            }
+                            else
+                            {
+                                addLog("Smae path skip: " + moveFile.source);
+                            }
                             movedThisLoop++;
 
                             moveFileStats();
